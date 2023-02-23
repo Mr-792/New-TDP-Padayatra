@@ -1,0 +1,398 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+        
+        <meta charset="utf-8" />
+        <title>TDP | Padayatra</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'assets/images/logo-dark.png' %}">
+		
+        <!-- Bootstrap Css -->
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{% static 'assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{% static 'assets/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+
+
+    </head>
+
+    <body data-layout="horizontal" data-topbar="colored" data-layout-size="boxed">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="\{{user.user_name}}/dashboard/" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                            </a>
+
+                            <a href="\{{user.user_name}}/dashboard/" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+
+                    
+                    </div>
+
+                    <div class="d-flex">
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect d-flex align-items-center justify-content-center" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="{% static 'assets/images/avatar-img.png' %}" alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15 text-white">{{user.user_name}}</span>
+                                <i class="arrow-down d-none d-xl-inline-block font-size-15 text-white"></i>
+                            </button>
+                           <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                               
+                             
+                                
+                                <a class="dropdown-item" href="\{{user.user_name}}/logout/"><i class="fas fa-sign-out-alt font-size-15 align-middle me-1 text-muted"></i><span class="align-middle">Sign out</span></a>
+                            </div>
+                        </div>
+
+                      
+            
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="topnav">
+
+                        <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+    
+                            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                                <ul class="navbar-nav">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="\{{user.user_name}}/dashboard/">
+                                          <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                                        </a>
+                                    </li>
+    
+                                    
+    
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button">
+											<i class="fas fa-stream me-2"></i>Timelines <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
+
+                                          
+                                            <a href="\{{user.user_name}}/posts/" class="dropdown-item"><div class="arrow-right"></div>Posts</a>
+											   <a href="\{{user.user_name}}/stories/" class="dropdown-item">Stories</a>
+											  <a href="\{{user.user_name}}/banners/" class="dropdown-item">Banners</a>
+											
+											
+                                        </div>
+                                    </li>
+										<li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button">
+                                            <i class="fas fa-walking me-2"></i>Padayatra <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
+
+                                            <a href="\{{user.user_name}}/schedule-padayatra/"  class="dropdown-item">Schedule Padayatra</a>
+                                            <a href="\{{user.user_name}}/padayatra-list/" class="dropdown-item">List of Padayatra</a>
+											
+                                        </div>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a class="nav-link" href="\{{user.user_name}}/users/">
+                                            <i class="fa fa-users me-2"></i> Users
+                                        </a>
+                                    </li>
+										 <li class="nav-item align-items-center" style="display:flex; ">
+                                        <a class="nav-link" href="\{{user.user_name}}/connect-with-NL/" style="background: #FFED00;  padding: 6px 10px; border-radius: 50px; font-weight: 400; font-size: 14px; line-height: 12px;color: #E52A1D;">
+                                             Connect with NL
+                                        </a>
+                                    </li>
+									 <li class="nav-item align-items-center" style="display:flex;margin-left:10px; ">
+                                        <a class="nav-link" href="\{{user.user_name}}/live/" style="background: #FFED00;  padding: 6px 10px; border-radius: 50px; font-weight: 400; font-size: 14px; line-height: 12px;color: #E52A1D;">
+                                            <i class="fab fa-youtube"></i> Live
+                                        </a>
+                                    </li>
+                                    <li class="nav-item align-items-center" style="display:flex;margin-left:10px; ">
+                                        <a class="nav-link" href="\{{user.user_name}}/sendnotification/">
+                                            <i class="fa fa fa-bell"></i> Send Notification
+                                        </a>
+                                    </li>
+                                 
+    
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+    
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        
+
+                        
+						   <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-3 color-red-tdp">Live Url's</h4>
+                                       
+                                        <form class="needs-validation">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="">Live Url<span style="color:red;padding-left:5px;">*</span></label>
+                                                        <input type="url" id="liveurl" class="form-control" placeholder="Enter Your Url" value="" required>
+                                                        <button class="btn mt-3 bgcolor-red-tdp text-white" type="submit">Submit</button>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+										
+                                          
+                                          
+											<div class="row">
+                                                
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="">Addational Video Url</label>
+                                                         <input type="url" id="additionalurl1" class="form-control" placeholder="Enter Your Url" value="" required>
+														 <button class="btn mt-3 bgcolor-red-tdp text-white" type="submit">Submit</button>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+											
+											<div class="row">
+                                                
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="">Addational Video Url</label>
+                                                         <input type="url" id="additionalurl2" class="form-control" placeholder="Enter Your Url" value="" required>
+														 <button class="btn mt-3 bgcolor-red-tdp text-white" type="submit">Submit</button>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div><div class="row">
+                                                
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="">Addational Video Url</label>
+                                                         <input type="url" id="additionalurl3" class="form-control" placeholder="Enter Your Url" value="" required>
+														 <button class="btn mt-3 bgcolor-red-tdp text-white" type="submit">Submit</button>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div><div class="row">
+                                                
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="">Addational Video Url</label>
+                                                         <input type="url"  id="additionalurl4" class="form-control" placeholder="Enter Your Url" value="" required>
+														 <button class="btn mt-3 bgcolor-red-tdp text-white" type="submit">Submit</button>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div><div class="row">
+                                                
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="">Addational Video Url</label>
+                                                         <input type="url" id="additionalurl5" class="form-control" placeholder="Enter Your Url" value="" required>
+														 <button class="btn mt-3 bgcolor-red-tdp text-white" type="submit">Submit</button>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                            
+                                        </form>
+                                        <button id="send">send notifcations</button>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div> 
+                        
+                        
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <script>document.write(new Date().getFullYear())</script> © Telugu Desam Party Padayatra.
+                            </div>
+                            
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        
+
+       
+
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'assets/libs/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'assets/libs/metismenu/metisMenu.min.js' %}"></script>
+        <script src="{% static 'assets/libs/simplebar/simplebar.min.js' %}"></script>
+        <script src="{% static 'assets/libs/node-waves/waves.min.js' %}"></script>
+        <script src="{% static 'assets/libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'assets/libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+		
+		  
+        <!-- App js -->
+        <script src="{% static 'assets/js/app.js' %}"></script>
+<script>
+        const cName="{{user.user_name}}"
+    function getCookie(cName) {
+      const name = cName + "=";
+      const cDecoded = decodeURIComponent(document.cookie); //to be careful
+      const cArr = cDecoded .split('; ');
+      let res;
+      cArr.forEach(val => {
+          if (val.indexOf(name) === 0) res = val.substring(name.length);
+      })
+      return res;
+}
+const cookie=getCookie(cName)
+if(cookie==undefined){
+        window.location.href='https://tdp.yuvagalamapp.com/'
+    }
+
+    getUrls()
+let id;
+    async function getUrls(){
+        await fetch(' https://tdp.yuvagalamapp.com/get-youtubeURLs',{
+            headers: {
+                    'Content-Type': "application/json",
+                    "Authorization": `Bearer ${cookie}`
+                },
+        }).then(response=>{
+            return response.json()
+        }).then(data=>{
+            let urls=data.data[0]
+            id=urls.id
+            $('#liveurl').val(urls.live_url)
+            $('#additionalurl1').val(urls.Addational_Video_url1)
+            $('#additionalurl2').val(urls.Addational_Video_url2)
+            $('#additionalurl3').val(urls.Addational_Video_url3)
+            $('#additionalurl4').val(urls.Addational_Video_url4)
+            $('#additionalurl5').val(urls.Addational_Video_url5)
+        })
+    }
+    $('form').on('submit',function(e){
+
+        e.preventDefault()
+        let data={
+            id:id,
+            live_url:$('#liveurl').val(),
+            Addational_Video_url1:$('#additionalurl1').val(),
+            Addational_Video_url2:$('#additionalurl2').val(),
+            Addational_Video_url3:$('#additionalurl3').val(),
+            Addational_Video_url4:$('#additionalurl4').val(),
+            Addational_Video_url5:$('#additionalurl5').val()
+        }
+        fetch('https://tdp.yuvagalamapp.com/update-youtubeURLs',{
+        method:'put',
+        headers:{
+            'Content-Type': "application/json",
+                    "Authorization": `Bearer ${cookie}`
+                },
+        body:JSON.stringify(data)
+        }).then(response=>{
+            if(response.ok) {
+                // window.location.reload()
+            }else if(response.status==401){
+                window.location.href="https:tdp.yuvagalamapp.com/"
+            }
+            return response.json()
+        }).then(data=>{
+            send_notification()
+        })
+    })
+
+    // $('#send').on('click',send_notification)
+
+  async function send_notification(){
+    //type:{youtube,poll,padayatra,post}
+    //to:{||,||,||,||}
+    await fetch('https://fcm.googleapis.com/fcm/send',{
+        method:'post',
+        headers:{
+            'Content-Type': "application/json",
+                    "Authorization": `key=AAAAeuQtz7Y:APA91bFDLvVptXFHkA7FG7fXkz9A0fkRp4brlDRI1HoH2iAzHVRPKBOTMSKchNufM21uqT2K6unZZOgjl29VVJO5LsAqq8nnpQBMGGpE1TgO0W3Sx7gf69pbtsfkS2LZ8gSkYT6RRtKh
+`
+        },
+        body:
+        JSON.stringify(
+{"priority":"high",
+"sound":true,
+"data":{
+"click_action":"FLUTTER_NOTIFICATION_CLICK",
+"body":"Custom Notifications",
+"title":"Custom Notification Title",
+"type":"youtube"
+},
+"notification":{
+"title":"New Video Uploaded",
+"body":"click to watch.",
+"android_channel_id":"general_key"
+},
+ "to":"/topics/Ongole"
+})
+    }).then(response=>{
+        console.log(response)
+        if(response.ok){
+            alert("ok")
+            window.location.reload()
+            return response.json()
+        }
+    }).then(data=>{
+        console.log(data)
+    })
+  }  
+</script>
+    </body>
+
+</html>

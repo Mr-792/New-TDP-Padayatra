@@ -1,0 +1,575 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+        
+        <meta charset="utf-8" />
+        <title>TDP | Padayatra</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'assets/images/logo-dark.png' %}">
+		 
+        <!-- Bootstrap Css -->
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{% static 'assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{% static 'assets/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+
+<style>
+.custom-container {
+  position: absolute;
+    bottom: 5%;
+    right: 20%;
+    width: 180px;
+    border: 1.5px solid #000;
+    border-top: none;
+    border-right: none;
+    padding: 0px 20px 0px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+
+}
+.custom-container .bar {
+  position: relative;
+  width: 40px;
+  background: teal;
+  box-sizing: border-box;
+  padding: 5px 2px 5px 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+.custom-container .bar:nth-child(1) {
+  height: 60px;
+  background: #ffbfbf;
+ margin-bottom: 10px;
+    border-radius: 10px;
+	margin-right:10px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-weight: 600;
+}
+.custom-container .bar:nth-child(2) {
+  height: 130px;
+  background: #187fca;
+  margin-bottom: 10px;
+    border-radius: 10px;
+	margin-right:10px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-weight: 600;
+}
+.custom-container .bar:nth-child(3) {
+  height: 70px;
+  background: #80a9c0;
+  margin-bottom: 10px;
+    border-radius: 10px;
+	margin-right:10px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-weight: 600;
+}
+
+.custom-container .bar:nth-child(4) {
+  height: 100px;
+  background: #cd8eff;
+  margin-bottom: 10px;
+    border-radius: 10px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-weight: 600;
+}
+.custom-container .bar .floor {
+  position: relative;
+  width: 100%;
+  height: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+.custom-container .bar .floor .window {
+  position: relative;
+  height: 5px;
+  width: 5px;
+  background: yellow;
+}
+
+.options-class {
+    background: #D9D9D9;
+    padding: 4px 10px;
+    border-radius: 20px;
+
+}
+
+.datepicker-custom .input-group {
+    position: relative;
+    
+    width: 340px !important;
+}
+.custom-fcontrol {
+   border-radius:20px;
+    background-color: #D9D9D9;
+}
+</style>
+    </head>
+
+    <body data-layout="horizontal" data-topbar="colored" data-layout-size="boxed">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="\{{user.user_name}}/dashboard/" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                            </a>
+
+                            <a href="\{{user.user_name}}/dashboard/" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+
+                      
+                    </div>
+
+                    <div class="d-flex">
+
+                      
+
+
+                        
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect d-flex align-items-center justify-content-center" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="{% static 'assets/images/avatar-img.png' %}" alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15 text-white">{{user.user_name}}</span>
+                                <i class="arrow-down d-none d-xl-inline-block font-size-15 text-white"></i>
+                            </button>
+                           <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                               
+                             
+                                
+                                <a class="dropdown-item" href="\{user.user_name}}/logout/"><i class="fas fa-sign-out-alt font-size-15 align-middle me-1 text-muted"></i><span class="align-middle">Sign out</span></a>
+                            </div>
+                        </div>
+
+                      
+            
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="topnav">
+
+                        <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+    
+                            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                                <ul class="navbar-nav">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="\{{user.user_name}}/dashboard/">
+                                          <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                                        </a>
+                                    </li>
+    
+                                    
+    
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button">
+											<i class="fas fa-stream me-2"></i>Timelines <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
+
+                                          
+                                            <a href="\{{user.user_name}}/posts/" class="dropdown-item"><div class="arrow-right"></div>Posts</a>
+											   <a href="\{{user.user_name}}/stories/" class="dropdown-item">Stories</a>
+											  <a href="\{{user.user_name}}/banners/" class="dropdown-item">Banners</a>
+											
+											
+                                        </div>
+                                    </li>
+										<li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button">
+                                            <i class="fas fa-walking me-2"></i>Padayatra <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
+
+                                            <a href="\{{user.user_name}}/schedule-padayatra/" class="dropdown-item">Schedule Padayatra</a>
+                                            <a href="\{{user.user_name}}/schedule-padayatra/" class="dropdown-item">List of Padayatra</a>
+											
+                                        </div>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a class="nav-link" href="\{{user.user_name}}/users/">
+                                            <i class="fa fa-users me-2"></i> Users
+                                        </a>
+                                    </li>
+										 <li class="nav-item align-items-center" style="display:flex; ">
+                                        <a class="nav-link" href="\{{user.user_name}}/connect-with-NL/" style="background: #FFED00;  padding: 6px 10px; border-radius: 50px; font-weight: 400; font-size: 14px; line-height: 12px;color: #E52A1D;">
+                                             Connect with NL
+                                        </a>
+                                    </li>
+    
+                                    <li class="nav-item align-items-center" style="display:flex;margin-left:10px; ">
+                                        <a class="nav-link" href="\{{user.user_name}}/live/" style="background: #FFED00;  padding: 6px 10px; border-radius: 50px; font-weight: 400; font-size: 14px; line-height: 12px;color: #E52A1D;">
+                                            <i class="fab fa-youtube"></i> Live
+                                        </a>
+                                    </li>
+                                    <li class="nav-item align-items-center" style="display:flex;margin-left:10px; ">
+                                        <a class="nav-link" href="\{{user.user_name}}/sendnotification/">
+                                            <i class="fa fa fa-bell"></i> Send Notification
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+    
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        
+
+                        
+						  <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                      
+                                            <div class="col-md-12 d-flex justify-content-end">
+                                                <div class="mb-3">
+												 <!-- <a href="connectnl-page3.html" class="btn bgcolor-tdp" style="padding:8px 80px;"> New</a> -->
+                                                    <a href="\{{user.user_name}}/connect-with-NL/" class="ms-5"><i class="fas fa-arrow-left" style="font-size: 26px; color: #000;"></i></a>
+                                                </div>
+												
+                                            </div>
+											
+										
+                                        <!-- end row -->
+										  <div class="row mb-2">
+										  <div class="col-md-8" >
+										  <div style="border-bottom: 1.5px solid #C5C5C5;">
+										  <h4><b>Issue Title</b></h4>
+														<div class="datepicker-custom mb-3" >
+                                                       <span id="issue"></span>
+                                                       <span id="issueend"></span>
+                                                        <div class="input-daterange input-group">
+                                                            <input type="date" class="form-control"   name="start" placeholder="Start Date" id="start_date" />
+                                                            <input id="end_date" type="date" class="form-control ms-3" name="end" placeholder="End Date" />
+                                                        </div>
+                                                    </div>
+														</div>
+														
+														<div class="mt-4" style="border-bottom: 1.5px solid #C5C5C5;">
+                                           
+                                           <h3>Question in english</h3>
+										   <p>
+										  <textarea id="englishPoll" required="" class="form-control" rows="4" placeholder="Text English"></textarea>
+										   </p>
+										   <div class="row" style="margin: 10px;">
+                                           <div class="col-md-6">
+										  <input type="text" id="option1" class="form-control  custom-fcontrol mb-2" required="" placeholder="1. Option One">
+										   </div>
+										    <div class="col-md-6">
+											  <input type="text" id="option2" class="form-control  custom-fcontrol mb-2" required="" placeholder="2. Option two">
+										   </div>
+										    <div class="col-md-6">
+											  <input type="text" id="option3" class="form-control  custom-fcontrol mb-2" required="" placeholder="3. Option three">
+										   </div>
+										    <div class="col-md-6">
+											  <input type="text" id="option4" class="form-control  custom-fcontrol mb-2" required="" placeholder="4. Option four">
+										   </div>
+										   </div>
+                                        </div>
+										<div class="mt-4" style="border-bottom: 1.5px solid #C5C5C5;">
+                                           
+                                           <h3>Question in telugu</h3>
+										   <p>
+										  <textarea id="teluguPoll" required="" class="form-control" rows="4" placeholder="Text English"></textarea>
+										   </p>
+										   <div class="row" style="margin: 10px;">
+                                           <div class="col-md-6">
+										  <input type="text" id="toption1" class="form-control  custom-fcontrol mb-2" required="" placeholder="1.  ఎంపిక ఒకటి">
+										   </div>
+										    <div class="col-md-6">
+											  <input type="text" id="toption2" class="form-control  custom-fcontrol mb-2" required="" placeholder="2.  ఎంపిక రెండు">
+										   </div>
+										    <div class="col-md-6">
+											  <input type="text" id="toption3" class="form-control  custom-fcontrol mb-2" required="" placeholder="3.  ఎంపిక మూడు">
+										   </div>
+										    <div class="col-md-6">
+											  <input type="text" id="toption4" class="form-control  custom-fcontrol mb-2" required="" placeholder="4.   ఎంపిక నాలుగు">
+										   </div>
+										   </div>
+										   	<div class="col-md-12 text-right" style="text-align: right;">
+											  <button type="button" id="submit" class="btn btn-danger">Submit</button>
+										   </div>
+                                        </div>
+										
+																								
+														
+										  </div>
+										  
+										   
+										  
+										  </div>
+										                                         
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <script>document.write(new Date().getFullYear())</script> © Telugu Desam Party Padayatra.
+                            </div>
+                            
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        
+
+       
+
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'assets/libs/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'assets/libs/metismenu/metisMenu.min.js' %}"></script>
+        <script src="{% static 'assets/libs/simplebar/simplebar.min.js' %}"></script>
+        <script src="{% static 'assets/libs/node-waves/waves.min.js' %}"></script>
+        <script src="{% static 'assets/libs/waypoints/lib/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'assets/libs/jquery.counterup/jquery.counterup.min.js' %}"></script>
+		
+		        <!-- plugins -->
+        <script src="{% static 'assets/libs/select2/js/select2.min.js' %}"></script>
+        <script src="{% static 'assets/libs/spectrum-colorpicker2/spectrum.min.js' %}"></script>
+        <script src="{% static 'assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+        <script src="{% static 'assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+        <script src="{% static 'assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js' %}"></script>
+        <script src="{% static 'assets/libs/%40chenfengyuan/datepicker/datepicker.min.js' %}"></script>
+		
+        <!-- init js -->
+        <script src="{% static 'assets/js/pages/form-advanced.init.js' %}"></script>
+        <!-- App js -->
+        <script src="{% static 'assets/js/app.js' %}"></script>
+<script>
+        const cName="{{user.user_name}}"
+    function getCookie(cName) {
+      const name = cName + "=";
+      const cDecoded = decodeURIComponent(document.cookie); //to be careful
+      const cArr = cDecoded .split('; ');
+      let res;
+      cArr.forEach(val => {
+          if (val.indexOf(name) === 0) res = val.substring(name.length);
+      })
+      return res;
+}
+
+
+function getDatesBetween(startDate, endDate) {
+    let ch_start=new Date(startDate)
+    let ch_end=new Date(endDate)
+        const currentDate = ch_start;
+        const dates = [];
+        while (currentDate <= ch_end) {
+            dates.push(new Date(currentDate).toDateString());
+            currentDate.setDate(new Date(currentDate).getDate()+1);
+        }
+        return dates;
+        }
+
+
+
+
+
+let start_date='',end_date='';
+let now=new Date().getDate()
+$('#start_date').on('change',function(e){
+    $('#issue').empty()
+    start_date=(e.target.value)
+    console.log(new Date(start_date))
+    console.log(alldates)
+    console.log("===============================")
+    console.log(now)
+    console.log(new Date(start_date).getDate())
+    if(now<new Date(start_date)){
+        alert("true")
+console.log(start_date)
+if(alldates.includes(new Date(start_date).toDateString())){
+    e.target.value=''
+$('#issue').append(`<p class="text-danger">This is Already Included</p>`)
+}
+    }else{
+        alert(false)
+    }
+
+
+})
+
+$('#end_date').on('change',function(e){
+    $('#issueend').empty()
+    end_date=e.target.value
+   
+    if(alldates.includes(new Date(end_date))){
+        $('#issueend').append(`<p class="text-danger">This is Already Included</p>`)
+
+    }
+})
+const cookie=getCookie(cName)
+if(cookie==undefined){
+        window.location.href='https://tdp.yuvagalamapp.com/'
+    }
+let alldates=[]
+    getPolls()
+    async function getPolls(){
+        await fetch(' https://tdp.yuvagalamapp.com/feed/all-polls',{
+            headers:{
+                    'Content-Type':"application/json",
+                    "Authorization":`Bearer ${cookie}`
+                },
+        }).then(response=>{
+            return response.json()
+        }).then(data=>{
+            let polls=data.data
+          
+            polls.forEach(ele=>{
+               let dates=getDatesBetween(ele.start_date,ele.end_date)
+               dates.forEach(ele=>{
+                alldates.push(ele)
+               })
+               console.log(alldates)
+            })
+
+            
+        })
+    }
+    $('#submit').on('click',function(){
+        if(start_date==''|end_date=='')
+        {
+          $('#issue').append("<p class='text-danger'>Enter Issue Date for Poll</p>")
+        }else if(start_date!=''&end_date!=''){
+            
+
+
+     if($('#englishPoll').val().trim()=='' | $('#teluguPoll').val().trim()==''){
+            alert("enter title")
+        }else if($('#option1').val().trim()==''|$('#option2').val().trim()==''|$('#option3').val().trim()==''|$('#option4').val().trim()==''|$('#toption1').val().trim()==''|$('#toption2').val().trim()==''|$('#toption3').val().trim()==''|$('#toption4').val().trim()==''){
+            alert("provide all the options")
+        }else{
+        let data={
+            start_date: presentdate,
+            end_date:presentenddate,
+            question_english:$('#englishPoll').val(),
+            question_telugu:$('#teluguPoll').val(),
+            options_english:{
+                option1:$('#option1').val(),
+                option1_count:0,
+                option2:$('#option2').val(),
+                option2_count:0,
+
+                option3:$('#option3').val(),
+                option3_count:0,
+
+                option4:$('#option4').val(),
+                option4_count:0,
+
+            },
+            options_telugu:{
+                option1:$('#toption1').val(),
+                option1_count:0,
+
+                option2:$('#toption2').val(),
+                option2_count:0,
+
+                option3:$('#toption3').val(),
+                option3_count:0,
+
+                option4:$('#toption4').val(),
+                option4_count:0,
+
+            },
+            published:true
+        } 
+        fetch(' https://tdp.yuvagalamapp.com/feed/create-poll',{
+            method:'post',
+            headers:{
+                    'Content-Type':"application/json",
+                    "Authorization":`Bearer ${cookie}`
+                },
+                body:JSON.stringify(data)
+        }).then(response=>{
+
+               if(response.ok){
+                window.location.href='https://tdp.yuvagalamapp.com/{{user.user_name}}/connect-with-NL/'
+            return response.json()
+        }else if(response.status==401){
+            window.location.href='https://tdp.yuvagalamapp.com/'
+        }
+             
+        })
+    }
+}
+    })
+
+   
+</script>
+    </body>
+
+</html>

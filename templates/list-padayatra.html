@@ -1,0 +1,665 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>TDP | Padayatra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/logo-dark.png' %}">
+    <!-- DataTables -->
+    <link href="{% static 'assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet"
+        type="text/css" />
+    <link href="{% static 'assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css' %}" rel="stylesheet"
+        type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="{% static 'assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css' %}"
+        rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Css -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="{% static 'assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="{% static 'assets/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+
+    <style>
+        div#datatable_wrapper {
+            overflow: auto;
+        }
+
+
+
+        #datatable_wrapper::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: #F5F5F5;
+        }
+
+        #datatable_wrapper::-webkit-scrollbar {
+            width: 3px;
+            background-color: #F5F5F5;
+            height: 8px;
+        }
+
+        #datatable_wrapper::-webkit-scrollbar-thumb {
+            background-color: #F90;
+            background-image: -webkit-linear-gradient(45deg,
+                    rgba(255, 255, 255, .2) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba(255, 255, 255, .2) 50%,
+                    rgba(255, 255, 255, .2) 75%,
+                    transparent 75%,
+                    transparent)
+        }
+
+        div.dataTables_wrapper div.dataTables_info {
+
+            margin-bottom: 30px;
+        }
+        .Completed{
+            color:white;
+            font-size:12px;
+            background-color: red;
+        }
+        .Scheduled{
+            color:white;
+            background-color: orange;
+            font-size:12px;
+
+        }
+        .Ongoing{
+            color:white;
+            font-size:12px;
+            background-color: green;
+
+        }
+    </style>
+</head>
+
+<body data-layout="horizontal" data-topbar="colored" data-layout-size="boxed">
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box">
+                        <a href="\{{user.user_name}}/dashboard/" class="logo logo-dark">
+                            <span class="logo-sm">
+                                <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                            </span>
+                        </a>
+
+                        <a href="\{{user.user_name}}/dashboard/" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                            </span>
+                        </a>
+                    </div>
+
+                    <button type="button"
+                        class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light"
+                        data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+
+                    <!-- App Search-->
+                  
+                </div>
+
+                <div class="d-flex">
+
+               
+
+
+
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button"
+                            class="btn header-item waves-effect d-flex align-items-center justify-content-center"
+                            id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img class="rounded-circle header-profile-user"
+                                src="{% static 'assets/images/avatar-img.png' %}" alt="Header Avatar">
+                            <span
+                                class="d-none d-xl-inline-block ms-1 fw-medium font-size-15 text-white">{{user.user_name}}</span>
+                            <i class="arrow-down d-none d-xl-inline-block font-size-15 text-white"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <!-- <a class="dropdown-item" href="change-password.html"><i class="fas fa-unlock font-size-15 align-middle text-muted me-1"></i> <span class="align-middle">Change Password</span></a>
+                               
+                              -->
+
+                            <a class="dropdown-item" href="\{{user.user_name}}/logout/"><i
+                                    class="fas fa-sign-out-alt font-size-15 align-middle me-1 text-muted"></i><span
+                                    class="align-middle">Sign out</span></a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="topnav">
+                    {% if user.is_superadmin %}
+
+                    <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+                        <div class="collapse navbar-collapse" id="topnav-menu-content">
+                            <ul class="navbar-nav">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="\{{user.user_name}}/dashboard/">
+                                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                                    </a>
+                                </li>
+
+
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages"
+                                        role="button">
+                                        <i class="fas fa-stream me-2"></i>Timelines <div class="arrow-down"></div>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="topnav-pages">
+
+
+                                        <a href="\{{user.user_name}}/posts/" class="dropdown-item">
+                                            <div class="arrow-right"></div>Posts
+                                        </a>
+                                        <a href="\{{user.user_name}}/stories/" class="dropdown-item">Stories</a>
+                                        <a href="\{{user.user_name}}/banners/" class="dropdown-item">Banners</a>
+
+
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages"
+                                        role="button">
+                                        <i class="fas fa-walking me-2"></i>Padayatra <div class="arrow-down"></div>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="topnav-pages">
+
+                                        <a href="\{{user.user_name}}/schedule-padayatra/" class="dropdown-item">Schedule
+                                            Padayatra</a>
+                                        <a href="\{{user.user_name}}/padayatra-list/" class="dropdown-item">List of
+                                            Padayatra</a>
+
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="\{{user.user_name}}/users/">
+                                        <i class="fa fa-users me-2"></i> Users
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item align-items-center" style="display:flex; ">
+                                    <a class="nav-link" href="\{{user.user_name}}/connect-with-NL/"
+                                        style="background: #FFED00;  padding: 6px 10px; border-radius: 50px; font-weight: 400; font-size: 14px; line-height: 12px;color: #E52A1D;">
+                                        Connect with NL
+                                    </a>
+                                </li>
+                                <li class="nav-item align-items-center" style="display:flex;margin-left:10px; ">
+                                    <a class="nav-link" href="\{{user.user_name}}/live/"
+                                        style="background: #FFED00;  padding: 6px 10px; border-radius: 50px; font-weight: 400; font-size: 14px; line-height: 12px;color: #E52A1D;">
+                                        <i class="fab fa-youtube"></i> Live
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    {% elif user.is_manager %}
+                    <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+                        <div class="collapse navbar-collapse" id="topnav-menu-content">
+                            <ul class="navbar-nav">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="\{{user.user_name}}/dashboard/">
+                                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                                    </a>
+                                </li>
+
+
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages"
+                                        role="button">
+                                        <i class="fas fa-stream me-2"></i>Timelines <div class="arrow-down"></div>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="topnav-pages">
+
+
+                                        <a href="\{{user.user_name}}/posts/" class="dropdown-item">
+                                            <div class="arrow-right"></div>Posts
+                                        </a>
+                                        <a href="\{{user.user_name}}/stories/" class="dropdown-item">Stories</a>
+                                        <a href="\{{user.user_name}}/banners/" class="dropdown-item">Banners</a>
+
+
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages"
+                                        role="button">
+                                        <i class="fas fa-walking me-2"></i>Padayatra <div class="arrow-down"></div>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="topnav-pages">
+
+                                        <a href="\{{user.user_name}}/schedule-padayatra/" class="dropdown-item">Schedule
+                                            Padayatra</a>
+                                        <a href="\{{user.user_name}}/padayatra-list/" class="dropdown-item">List of
+                                            Padayatra</a>
+
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="\{{user.user_name}}/users/">
+                                        <i class="fa fa-users me-2"></i> Users
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    {% elif user.is_supervisor %}
+                    <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+                        <div class="collapse navbar-collapse" id="topnav-menu-content">
+                            <ul class="navbar-nav">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="\{{user.user_name}}/dashboard/">
+                                        <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title mb-3 color-red-tdp">Districts wise Padayatra Details
+                                            </h4>
+                                        </div>
+
+
+                                        <div class="col-3" style="text-align:right;">
+                                            <label for="inputPassword6" class="col-form-label">Search:</label>
+                                        </div>
+                                        <div class="col-3">
+                                            <input type="search" id="search" class="form-control form-control-sm"
+                                                placeholder="" aria-controls="datatable">
+                                        </div>
+
+                                    </div>
+
+                                    <table id="" class="table table-bordered dt-responsive nowrap"
+                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>Padayatra Name</th>
+                                                <th>Parliament Constituency</th>
+                                                <th>Assembly Constituency</th>
+                                                <th>Village/Mandal</th>
+                                                <th>Padayatra Start Point</th>
+                                                <th>Padayatra Start Date</th>
+                                                <th>Padayatra End Date </th>
+                                                <th>Status of Padayatra</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+
+
+                                        <tbody id="listtable">
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                        </di<!-- end row -->
+
+
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <script>document.write(new Date().getFullYear())</script> © Telugu Desam Party
+                                Padayatra.
+                            </div>
+
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+
+
+
+
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'assets/libs/jquery/jquery.min.js' %} "></script>
+        <script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
+        <script src="{% static 'assets/libs/metismenu/metisMenu.min.js' %} "></script>
+        <script src="{% static 'assets/libs/simplebar/simplebar.min.js' %} "></script>
+        <script src="{% static 'assets/libs/node-waves/waves.min.js' %} "></script>
+        <script src="{% static 'assets/libs/waypoints/lib/jquery.waypoints.min.js' %} "></script>
+        <script src="{% static 'assets/libs/jquery.counterup/jquery.counterup.min.js' %} "></script>
+
+        <!-- Required datatable js -->
+        <script src="{% static 'assets/libs/datatables.net/js/jquery.dataTables.min.js' %} "></script>
+        <script src="{% static 'assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js' %} "></script>
+        <!-- Buttons examples -->
+
+        <script src="{% static 'assets/libs/jszip/jszip.min.js' %} "></script>
+        <script src="{% static 'assets/libs/pdfmake/build/pdfmake.min.js' %} "></script>
+        <script src="{% static 'assets/libs/pdfmake/build/vfs_fonts.js' %} "></script>
+        <script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.html5.min.js' %} "></script>
+        <script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.print.min.js' %} "></script>
+        <script src="{% static 'assets/libs/datatables.net-buttons/js/buttons.colVis.min.js' %} "></script>
+
+
+        <!-- Datatable init js -->
+        <script src="{% static 'assets/js/pages/datatables.init.js' %} "></script>
+        <!-- apexcharts -->
+        <script src="{% static 'assets/libs/apexcharts/apexcharts.min.js' %} "></script>
+
+
+
+        <!-- App js -->
+        <script src="{% static 'assets/js/app.js' %} "></script>
+        <script>
+            const cName = "{{user.user_name}}"
+            function getCookie(cName) {
+                const name = cName + "=";
+                const cDecoded = decodeURIComponent(document.cookie); //to be careful
+                const cArr = cDecoded.split('; ');
+                let res;
+                cArr.forEach(val => {
+                    if (val.indexOf(name) === 0) res = val.substring(name.length);
+                })
+                return res;
+            }
+            ///////////////////////////////////////////////////////////////////
+            let pd_s;
+            const cookie = getCookie(cName)
+            if (cookie == undefined) {
+                window.location.href = 'https://tdp.yuvagalamapp.com/'
+            } else {
+                getList()
+
+            }
+            async function getList() {
+                await fetch('https://tdp.yuvagalamapp.com/all-districts-web', {
+                    headers: {
+                        'Content-Type': "application/json",
+                        "Authorization": `Bearer ${cookie}`
+                    },
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json()
+                        } else if (response.status == 401) {
+                            window.location.href = 'https://tdp.yuvagalamapp.com/'
+                        }
+                    })
+                    .then(data => {
+                        let lists = data.data
+                        let now = new Date()
+                        let village;
+                        let status;
+
+                        let id=[]
+                        lists.forEach(ele=>{
+                            id.push(Object.values(ele)[0])
+                        }
+                            )
+                        let sortearray=id.sort(function(a, b){return b-a}) 
+                        console.log(sortearray)
+                        let sortedlist=[]
+                        sortearray.forEach(i=>{
+                             console.log(i)
+                             lists.forEach(ele=>{
+                                if(Object.values(ele)[0]==i){ 
+                                    sortedlist.push(ele)}})})
+
+                        sortedlist.forEach(item => {
+                            if (item.status !== "Completed") {
+                                if (new Date(item.start_date).getTime() < (new Date(now).getTime() + 19800000)) {
+                                    if (new Date(item.end_date).getTime() <= (new Date(now).getTime() + 19800000)) {
+                                        pd_s = {
+                                            id: item.id,
+                                            title: item.title,
+                                            district: item.district,
+                                            assembly: item.assembly,
+                                            status: 'Completed',
+                                            start_point: item.start_point,
+                                            start_date: item.start_date,
+                                            end_date: item.end_date,
+                                            village: item.village,
+                                            source_link: item.source_link
+                                        }
+                                        status='Completed'
+                                        changeStatus(pd_s)
+                                    } else {
+                                        pd_s = {
+                                            id: item.id,
+                                            title: item.title,
+                                            district: item.district,
+                                            assembly: item.assembly,
+                                            status: 'Ongoing',
+                                            start_point: item.start_point,
+                                            start_date: item.start_date,
+                                            end_date: item.end_date,
+                                            village: item.village,
+                                            source_link: item.source_link
+                                        }
+                                        status='Ongoing'
+                                        changeStatus(pd_s)     
+                                    }
+                                }else {
+                                    pd_s = {
+                                        id: item.id,
+                                        title: item.title,
+                                        district: item.district,
+                                        assembly: item.assembly,
+                                        status: 'Scheduled',
+                                        start_point: item.start_point,
+                                        start_date: item.start_date,
+                                        end_date: item.end_date,
+                                        village: item.village,
+                                        source_link: item.source_link
+                                    }
+                                
+                                    status="Scheduled"
+                                    changeStatus(pd_s) 
+                                }
+                            }else{
+                                status='Completed'
+                            }
+                    $('#listtable').append(`<tr id="pd${item.id}">
+											<td id="title">${item.title}</td>
+                                                <td id="district">${item.district}</td>
+                                                <td id="assembly">${item.assembly}</td>
+                                                <td id="village">${village}</td>
+                                                <td id="startpoint">${item.start_point}</td>
+                                                <td>${new Date(item.start_date).toUTCString()}</td>
+                                                <td>${new Date(item.end_date).toUTCString()}</td>
+                                                <td>
+                                                            <span class="badge rounded-pill  font-size-12 ${status}">${status}</span>
+                                                        </td>
+														<td>
+                                                            <a href="https://tdp.yuvagalamapp.com/{{user.user_name}}/edit-padayatra/${item.id}/"><i class="fas fa-edit"></i></a>
+                                                            <a href='#' onClick="deletepd(${item.id})"><i class="fas fa-trash"></i></a>
+                                                        </td>
+                                               
+                                            </tr>`)
+                })
+
+            })
+                                }
+
+            function deletepd(id) {
+
+                fetch(`https://tdp.yuvagalamapp.com/delete-padayatra/${id}`, {
+                    method: 'delete',
+                    headers: {
+                        'Content-Type': "application/json",
+                        "Authorization": `Bearer ${cookie}`
+                    }
+                }).then(response => {
+                    console.log(response.ok)
+                    if (response.ok) {
+                        document.getElementById(`pd${id}`).style.display = 'none'
+                        return response.json()
+                    } else if (response.status == 401) {
+                        window.location.href('https://tdp.yuvagalamapp.com/')
+                    }
+                })
+            }
+
+
+            var filter = document.getElementById('search')
+            filter.addEventListener('keyup', filteritems)
+            function filteritems(e) {
+                let childs = $('#listtable').children()
+                for (var i = 0; i < childs.length; i++) {
+                    if (childs[i].childNodes[1].textContent.toLowerCase().indexOf(filter.value) == -1 | childs[i].childNodes[3].textContent.toLowerCase().indexOf(filter.value) !== 1 || childs[i].childNodes[5].textContent.toLowerCase().indexOf(filter.value) !== 1) {
+                        childs[i].style.display = 'none';
+                    }
+
+                }
+                var text = e.target.value.toLowerCase();
+                var title = document.querySelectorAll('#title')
+                Array.from(title).forEach(function (item) {
+                    var itemName = item.textContent;
+                    if (itemName.trim().toLowerCase().indexOf(text) != -1) {
+                        item.parentElement.style.display = "";
+                    }
+                    //    
+                })
+
+                var names = document.querySelectorAll('#district')
+                Array.from(names).forEach(function (item) {
+                    var itemName = item.textContent;
+                    if (itemName.trim().toLowerCase().indexOf(text) != -1) {
+                        item.parentElement.style.display = "";
+                    }
+                    //    
+                })
+
+                var assembly = document.querySelectorAll('#assembly')
+                Array.from(assembly).forEach(function (item) {
+                    var itemName = item.textContent;
+                    if (itemName.trim().toLowerCase().indexOf(text) != -1) {
+                        item.parentElement.style.display = ""
+                    }
+                })
+
+                var village = document.querySelectorAll('#village')
+                Array.from(village).forEach(function (item) {
+                    var itemName = item.textContent;
+                    if (itemName.trim().toLowerCase().indexOf(text) != -1) {
+                        item.parentElement.style.display = ""
+                    }
+                })
+                var startpoint = document.querySelectorAll('#startpoint')
+                Array.from(startpoint).forEach(function (item) {
+                    var itemName = item.textContent;
+                    if (itemName.trim().toLowerCase().indexOf(text) != -1) {
+                        item.parentElement.style.display = ""
+                    }
+                })
+            }
+
+            $('input[type=search]').on('search', function () {
+
+
+                var names = document.querySelectorAll('#district')
+                Array.from(names).forEach(function (item) {
+                    var itemName = item.textContent;
+
+                    item.parentElement.style.display = ""
+
+
+                })
+            });
+
+
+            async function changeStatus(pd_s) {
+                /* let pd_s = {
+                    id:Number.parseInt(padayatra_id),
+                    title: $('#title').val(),
+                    district: $('#pclist').val(),
+                    assembly: $('#aclist').val(),
+                    status: $('#pdstatus').val(),
+                    start_point: $('#start_point').val(),
+                    start_date: $('#start_date').val(),
+                    end_date: $('#end_date').val(),
+                    village: $('#village').val(),
+                    source_link: district_map
+                } */
+                await fetch(' https://tdp.yuvagalamapp.com/update-padayatra', {
+                    method: 'put',
+                    headers: {
+                        'Content-Type': "application/json",
+                        "Authorization": `Bearer ${cookie}`
+                    },
+                    body: JSON.stringify(pd_s),
+                }).then(response => {
+                    if (response.ok) {
+                        //  window.location.href = 'https://tdp.yuvagalamapp.com/{{user.user_name}}/padayatra-list/'
+
+                        return response.json()
+                    } else if (response.status == 401) {
+                        window.location.href = 'https://tdp.yuvagalamapp.com/'
+                    }
+
+
+                })
+            }
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,571 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+        
+        <meta charset="utf-8" />
+        <title>TDP | Padayatra</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'assets/images/logo-dark.png' %}">
+		   
+        <!-- Bootstrap Css -->
+        <link href="{% static 'assets/css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{% static 'assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{% static 'assets/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+		  <link href="{% static 'assets/libs/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css" />
+			<link  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet"/>
+            <style>
+                img.card-img-top.img-fluid {
+    height: 300px;
+    width: 100%;
+}
+            </style>
+    </head>
+
+    <body data-layout="horizontal" data-topbar="colored" data-layout-size="boxed">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+             <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <!-- LOGO -->
+                        <div class="navbar-brand-box">
+                            <a href="\{{user.user_name}}/dashboard/" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                            </a>
+
+                            <a href="\{{user.user_name}}/dashboard/" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="68">
+                                </span>
+                            </a>
+                        </div>
+
+                        <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+
+                  
+                    </div>
+
+                    <div class="d-flex">
+
+
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn header-item waves-effect d-flex align-items-center justify-content-center" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="{% static 'assets/images/avatar-img.png' %}" alt="Header Avatar">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15 text-white">{{user.user_name}}</span>
+                                <i class="arrow-down d-none d-xl-inline-block font-size-15 text-white"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <!-- <a class="dropdown-item" href="change-password.html"><i class="fas fa-unlock font-size-15 align-middle text-muted me-1"></i> <span class="align-middle">Change Password</span></a>
+                               
+                              -->
+                                
+                                <a class="dropdown-item" href="\{{user.user_name}}/logout/"><i class="fas fa-sign-out-alt font-size-15 align-middle me-1 text-muted"></i><span class="align-middle">Sign out</span></a>
+                            </div>
+                        </div>
+
+                      
+            
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="topnav">
+                  {% if user.is_superadmin %}
+                        <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+    
+                            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                                <ul class="navbar-nav">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="\{{user.user_name}}/dashboard/">
+                                          <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                                        </a>
+                                    </li>
+    
+                                    
+    
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button">
+											<i class="fas fa-stream me-2"></i>Timelines <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
+
+                                          
+                                            <a href="\{{user.user_name}}/posts/" class="dropdown-item"><div class="arrow-right"></div>Posts</a>
+											   <a href="\{{user.user_name}}/stories/" class="dropdown-item">Stories</a>
+											  <a href="\{{user.user_name}}/banners/" class="dropdown-item">Banners</a>
+											
+											
+                                        </div>
+                                    </li>
+										<li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button">
+                                            <i class="fas fa-walking me-2"></i>Padayatra <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
+
+                                            <a href="\{{user.user_name}}/schedule-padayatra/" class="dropdown-item">Schedule Padayatra</a>
+                                            <a href="\{{user.user_name}}/padayatra-list/" class="dropdown-item">List of Padayatra</a>
+											
+                                        </div>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a class="nav-link" href="\{{user.user_name}}/users/">
+                                            <i class="fa fa-users me-2"></i> Users
+                                        </a>
+                                    </li>
+                                    <li class="nav-item align-items-center" style="display:flex; ">
+                                        <a class="nav-link" href="\{{user.user_name}}/connect-with-NL/" style="background: #FFED00;  padding: 6px 10px; border-radius: 50px; font-weight: 400; font-size: 14px; line-height: 12px;color: #E52A1D;">
+                                             Connect with NL
+                                        </a>
+                                    </li>
+                                    <li class="nav-item align-items-center" style="display:flex;margin-left:10px; ">
+                                        <a class="nav-link" href="\{{user.user_name}}/live/" style="background: #FFED00;  padding: 6px 10px; border-radius: 50px; font-weight: 400; font-size: 14px; line-height: 12px;color: #E52A1D;">
+                                            <i class="fab fa-youtube"></i> Live
+                                        </a>
+                                    </li>
+                                    <li class="nav-item align-items-center" style="display:flex;margin-left:10px; ">
+                                        <a class="nav-link" href="\{{user.user_name}}/sendnotification/">
+                                            <i class="fa fa fa-bell"></i> Send Notification
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                        {% elif user.is_manager %}
+                        <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+    
+                            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                                <ul class="navbar-nav">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="\{{user.user_name}}/dashboard/">
+                                          <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button">
+											<i class="fas fa-stream me-2"></i>Timelines <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-pages">
+
+                                          
+                                            <a href="\{{user.user_name}}/posts/" class="dropdown-item"><div class="arrow-right"></div>Posts</a>
+											   <a href="\{{user.user_name}}/stories/" class="dropdown-item">Stories</a>
+											  <a href="\{{user.user_name}}/banners/" class="dropdown-item">Banners</a>
+											
+											
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                        {% endif %}
+                    </div>
+                </div>
+            </header>
+    
+
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                      
+
+                        
+						  <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div>
+                                                        <h5 class="color-red-tdp">Posts List</h5>
+                                                        
+                                                    </div>
+                                                </div>
+            
+                                                <div class="col-md-6">
+                                                    <div class="form-inline float-md-end">
+                                                        <div class="search-box ms-2">
+                                                            <div class="position-relative">
+                                                              <a href="\{{user.user_name}}/create-post/" class="btn bgcolor-red-tdp text-white"> <i class="fas fa-plus"></i> Add Post </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+
+
+                                            <div class="row mt-5" id="postsList">
+                                                
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div> <!-- end row -->
+                        
+                        
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12 text-center">
+                                <script>document.write(new Date().getFullYear())</script> © Telugu Desam Party Padayatra.
+                            </div>
+                            
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        
+
+       
+
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'assets/libs/jquery/jquery.min.js' %} "></script>
+        <script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js' %} "></script>
+        <script src="{% static 'assets/libs/metismenu/metisMenu.min.js' %} "></script>
+        <script src="{% static 'assets/libs/simplebar/simplebar.min.js' %} "></script>
+        <script src="{% static 'assets/libs/node-waves/waves.min.js' %} "></script>
+        <script src="{% static 'assets/libs/waypoints/lib/jquery.waypoints.min.js' %} "></script>
+        <script src="{% static 'assets/libs/jquery.counterup/jquery.counterup.min.js' %} "></script>
+		
+		          <!-- plugins -->
+        <script src="{% static 'assets/libs/select2/js/select2.min.js' %} "></script>
+          <!-- init js -->
+        <script src="{% static 'assets/js/pages/form-advanced.init.js' %} "></script>
+       
+
+        <!-- App js -->
+        <script src="{% static 'assets/js/app.js' %} "></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js' %} "></script>
+  <script>
+    $(function () {
+      $('input')
+        .on('change', function (event) {
+          var $element = $(event.target);
+          var $container = $element.closest('.example');
+
+          if (!$element.data('tagsinput')) return;
+
+          var val = $element.val();
+          if (val === null) val = 'null';
+          var items = $element.tagsinput('items');
+
+          $('code', $('pre.val', $container)).html(
+            $.isArray(val)
+              ? JSON.stringify(val)
+              : '"' + val.replace('"', '\\"') + '"'
+          );
+          $('code', $('pre.items', $container)).html(
+            JSON.stringify($element.tagsinput('items'))
+          );
+        })
+        .trigger('change');
+    });
+  </script>
+<script>
+jQuery(document).ready(function () {
+  ImgUpload();
+});
+
+function ImgUpload() {
+  var imgWrap = "";
+  var imgArray = [];
+
+  $('.upload__inputfile').each(function () {
+    $(this).on('change', function (e) {
+      imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
+      var maxLength = $(this).attr('data-max_length');
+
+      var files = e.target.files;
+      var filesArr = Array.prototype.slice.call(files);
+      var iterator = 0;
+      filesArr.forEach(function (f, index) {
+
+        if (!f.type.match('image.*')) {
+          return;
+        }
+
+        if (imgArray.length > maxLength) {
+          return false
+        } else {
+          var len = 0;
+          for (var i = 0; i < imgArray.length; i++) {
+            if (imgArray[i] !== undefined) {
+              len++;
+            }
+          }
+          if (len > maxLength) {
+            return false;
+          } else {
+            imgArray.push(f);
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              var html = "<div class='upload__img-box'><div style='background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+              imgWrap.append(html);
+              iterator++;
+            }
+            reader.readAsDataURL(f);
+          }
+        }
+      });
+    });
+  });
+
+  $('body').on('click', ".upload__img-close", function (e) {
+    var file = $(this).parent().data("file");
+    for (var i = 0; i < imgArray.length; i++) {
+      if (imgArray[i].name === file) {
+        imgArray.splice(i, 1);
+        break;
+      }
+    }
+    $(this).parent().parent().remove();
+  });
+}
+</script>
+<script>
+        const cName="{{user.user_name}}"
+    function getCookie(cName) {
+      const name = cName + "=";
+      const cDecoded = decodeURIComponent(document.cookie); //to be careful
+      const cArr = cDecoded .split('; ');
+      let res;
+      cArr.forEach(val => {
+          if (val.indexOf(name) === 0) res = val.substring(name.length);
+      })
+      return res;
+}
+const cookie=getCookie(cName)
+if(cookie==undefined){
+        window.location.href='https://tdp.yuvagalamapp.com/'
+    }else{
+        getPosts()
+    }
+async function getPosts(){
+    await fetch('https://tdp.yuvagalamapp.com/feed/all-posts',{
+        headers:{
+                    'Content-Type':"application/json",
+                    "Authorization":`Bearer ${cookie}`
+                },
+    })
+    .then(response=>{
+        if(response.ok){
+            return response.json()
+        }else if(response.status==401){
+            window.location.href='https://tdp.yuvagalamapp.com/'
+        }
+    })
+    .then(data=>{
+        console.log(data.data)
+        let posts=data.data
+        let state,state_id;
+        console.log(posts)
+        let oldposts=
+        posts.forEach(ele=>{
+        
+            if(ele.published==true){
+                state="UnPublish"
+                state_id=1
+            }else{
+                state="Publish"
+                state_id=0
+            }
+            if(ele.post_type=='IMAGE'){
+                let sources;
+                if(ele.source_link.includes(',')){
+                    sources=ele.source_link.split(',')[0]
+                }
+                else{
+                    sources=ele.source_link
+                }
+            $('#postsList').append(`<div class="col-xl-4 col-sm-6" id="post${ele.id}">
+                                <div class="card">
+                                    <div class="card-body" style="height:500px;">
+                                        <h5 class="font-size-16 mb-1  text-center text-dark">${ele.title_english}</h5>
+                                        <p class="text-muted mb-2 text-center">${ele.category}</p>
+                                        
+										<img class="card-img-top img-fluid" width="200" height="300" src="${sources}" alt="Card image cap">
+										<p>${(ele.description_english).substring(0,150).trim()}...</p>
+										<p><strong>Tags: </strong>${ele.tags}</p>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                       <button type="button" class="btn btn-outline-light text-truncate">${ele.likes_count} likes</button>
+                                        <button type="button" class="btn btn-outline-light text-truncate">${ele.comments_count}Comments</button>
+                                        <button type="button" class="btn btn-outline-light text-truncate" >${ele.shares_count}Shares</button>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <a href="edit-post/${ele.id}/"><button type="button" class="btn btn-outline-light text-truncate"><i class="fas fa-edit me-1"></i> Edit</button></a>
+                                        <button type="button" class="btn btn-outline-light text-truncate" id="state${ele.id}" onClick="PublishPost(${ele.id})"><i class="fas fa-upload me-1"></i>${state}</button>
+                                        <button type="button" class="btn btn-outline-light text-truncate" ><i class="fas fa-upload me-1"></i>Comments</button>
+                                        <button type="button" class="btn btn-outline-light text-truncate" onClick="DeletePost(${ele.id})"><i class="fas fa-upload me-1"></i> Delete</button>
+                                    </div>
+                                </div>
+                            </div>`)
+        }else if(ele.post_type=='VIDEO'){
+       $('#postsList').append(`<div class="col-xl-4 col-sm-6" id="post${ele.id}">
+                                <div class="card">
+                                    <div class="card-body" style="height:500px;">
+                                        <h5 class="font-size-16 mb-1  text-center text-dark">${ele.title_english}</h5>
+                                        <p class="text-muted mb-2 text-center">${ele.category}</p>
+										<video  height="300px" width="100%" controls src="${ele.source_link}" ></video>
+										<p>${(ele.description_english).substring(0,150).trim()}</p>
+										<p><strong>Tags:</strong>${ele.tags}</p>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                       <button type="button" class="btn btn-outline-light text-truncate">${ele.likes_count} likes</button>
+                                        <button type="button" class="btn btn-outline-light text-truncate">${ele.comments_count}Comments</button>
+                                        <button type="button" class="btn btn-outline-light text-truncate" >${ele.shares_count}Shares</button>
+                                    </div>
+
+                                    <div class="btn-group" role="group">
+                                        <a href="edit-post/${ele.id}/"><button type="button" class="btn btn-outline-light text-truncate"><i class="fas fa-edit me-1"></i> Edit</button></a>
+                                        <button type="button" class="btn btn-outline-light text-truncate" id="state${ele.id}" onClick="PublishPost(${ele.id})" ><i class="fas fa-upload me-1"></i>${state}</button>
+                                        <button type="button" class="btn btn-outline-light text-truncate" ><i class="fas fa-upload me-1"></i>Comments</button>                                       
+                                        <button type="button" class="btn btn-outline-light text-truncate" onClick="DeletePost(${ele.id})"><i class="fas fa-upload me-1"></i> Delete</button>
+                                    </div>
+                                </div>
+                            </div>`)
+        }else if(ele.post_type=='TEXT'){
+           
+$('#postsList').append(`<div class="col-xl-4 col-sm-6" id="post${ele.id}">
+                         <div class="card">
+                             <div class="card-body" style="height:500px;">
+                                
+                                
+                                 <h5 class="font-size-16 mb-1  text-center text-dark">${ele.title_english}</h5>
+                                 <p class="text-muted mb-2 text-center">${ele.category}</p>
+                                 <p>${ele.description_english} </p>
+                                 <p>${ele.description_telugu} </p>
+                                 <p><strong>Tags:</strong>${ele.tags}</p>
+                             </div>
+                             <div class="btn-group" role="group">
+                                       <button type="button" class="btn btn-outline-light text-truncate">${ele.likes_count} likes</button>
+                                        <button type="button" class="btn btn-outline-light text-truncate">${ele.comments_count}Comments</button>
+                                        <button type="button" class="btn btn-outline-light text-truncate" >${ele.shares_count}Shares</button>
+                                    </div>
+
+                             <div class="btn-group" role="group">
+                                 <a href="edit-post/${ele.id}/"><button type="button" class="btn btn-outline-light text-truncate"><i class="fas fa-edit me-1"></i> Edit</button></a>
+                                 <button type="button" class="btn btn-outline-light text-truncate" id="state${ele.id}" onClick="PublishPost(${ele.id})"><i class="fas fa-upload me-1"></i>${state}</button>
+                                 <button type="button" class="btn btn-outline-light text-truncate" ><i class="fas fa-upload me-1"></i>Comments</button>
+                                 <button type="button" class="btn btn-outline-light text-truncate"  onClick="DeletePost(${ele.id})"><i class="fas fa-upload me-1"></i> Delete</button>
+                             </div>
+                         </div>
+                     </div>`)
+ }
+    })
+    })
+}
+
+async function PublishPost(post_id){
+    let bodyData;
+    if($(`#state${post_id}`)[0].innerHTML=='<i class="fas fa-upload me-1"></i>Publish'){
+        bodyData={
+            id:post_id,
+            published:true
+        }
+    }else if($(`#state${post_id}`)[0].innerHTML=='<i class="fas fa-upload me-1"></i>UnPublish'){
+        bodyData={
+            id:post_id,
+            published:false
+        }
+}
+
+    await fetch(' https://tdp.yuvagalamapp.com/feed/publish-post',{
+        method:'put',
+         headers:{
+                    'Content-Type':"application/json",
+                    "Authorization":`Bearer ${cookie}`
+                },
+                body:JSON.stringify(bodyData)
+    }).then(response=>{
+        if(response.ok){
+        if($(`#state${post_id}`)[0].innerHTML=='<i class="fas fa-upload me-1"></i>Publish'){
+            document.getElementById(`state${post_id}`).innerHTML='<i class="fas fa-upload me-1"></i>UnPublish'
+        }else if($(`#state${post_id}`)[0].innerHTML=='<i class="fas fa-upload me-1"></i>UnPublish'){
+            document.getElementById(`state${post_id}`).innerHTML='<i class="fas fa-upload me-1"></i>Publish'
+        }
+    return response.json()    
+    }else if(response.status==401){
+        window.location.href=' https://tdp.yuvagalamapp.com/'
+    }
+
+      
+    })
+    .then(data=>{
+        
+    })
+}
+
+
+async function DeletePost(post_id){
+  
+   
+
+    await fetch(`https://tdp.yuvagalamapp.com/feed/delete-post/${post_id}`,{
+        method:'delete',
+         headers:{
+                    'Content-Type':"application/json",
+                    "Authorization":`Bearer ${cookie}`
+                },
+               
+    }).then(response=>{
+        if(response.ok){
+            let x=document.getElementById(`post${post_id}`)
+    x.style.display='none'
+        
+        return response.json()
+        }else if(response.status==401){
+            window.location.href='https://tdp.yuvagalamapp.com/'
+        }
+    })
+   
+}
+
+</script>
+
+    </body>
+
+</html>
